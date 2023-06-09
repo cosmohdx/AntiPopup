@@ -90,7 +90,7 @@ public final class AntiPopup extends JavaPlugin {
 
         if (yamlDoc.getBoolean("setup-mode")) {
             switch (PacketEvents.getAPI().getServerManager().getVersion()) {
-                case V_1_19_3, V_1_19_4 -> yamlDoc.set("mode", "NMS");
+                case V_1_19_3, V_1_19_4, V_1_20 -> yamlDoc.set("mode", "NMS");
                 default -> yamlDoc.set("mode", "PACKET");
             }
             yamlDoc.set("setup-mode", false);
@@ -107,6 +107,7 @@ public final class AntiPopup extends JavaPlugin {
             switch (serverManager.getVersion()) {
                 case V_1_19_4 -> pluginManager.registerEvents(new PlayerListener(new PlayerInjector_v1_19_4()), this);
                 case V_1_19_3 -> pluginManager.registerEvents(new PlayerListener(new PlayerInjector_v1_19_3()), this);
+                case V_1_20 -> pluginManager.registerEvents(new PlayerListener(new PlayerInjector_v1_20()), this);
             }
             getLogger().info("Hooked on " + serverManager.getVersion().getReleaseName());
         }
